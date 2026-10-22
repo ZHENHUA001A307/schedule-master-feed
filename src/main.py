@@ -19,6 +19,11 @@ REPO = os.environ.get("GITHUB_REPOSITORY", "unknown/repo")
 DEFAULT_LINK = f"https://github.com/{REPO}"
 
 
+def cdata(text):
+    text = "" if text is None else str(text)
+    return "<![CDATA[" + text.replace("]]>", "]]]]><![CDATA[>") + "]]>"
+
+
 def load_schedule():
     with open(SCHEDULE, encoding="utf-8") as f:
         return yaml.safe_load(f) or {}
@@ -75,9 +80,9 @@ def merge_with_existing(items, today):
     for it in items:
         xml = (
             "<item>\n"
-            f"  <title><![CDATA[{it['title']}]]></title>\n"
+            f"  <title>{cdata(it['title'])}</title>\n"
             f"  <link>{it['link']}</link>\n"
-            f"  <description><![CDATA[{it['description']}]]></description>\n"
+            f"  <description>{cdata(it['description'])}</description>\n"
             f'  <guid isPermaLink="false">{it["guid"]}</guid>\n'
             f"  <pubDate>{it['pubDate']}</pubDate>\n"
             "</item>"

@@ -3,15 +3,20 @@
 
 import datetime
 import shutil
-import sys
+import importlib.util
+from pathlib import Path
 import tempfile
 import unittest
 import xml.etree.ElementTree as ET
-from pathlib import Path
 from unittest import mock
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
-import main as feed_main
+_MAIN_PATH = Path(__file__).resolve().parent.parent / "src" / "main.py"
+if not _MAIN_PATH.exists():
+    raise FileNotFoundError("main.py not found: " + str(_MAIN_PATH))
+
+_spec = importlib.util.spec_from_file_location("feed_main", _MAIN_PATH)
+feed_main = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(feed_main)
 
 
 def task(id, title="t", period=1, offsets=(0,), enabled=True,
