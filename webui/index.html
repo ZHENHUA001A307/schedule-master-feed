@@ -130,6 +130,7 @@
   <button class="success" onclick="previewToday()">⚙️ 本地预览</button>
   <button class="danger" onclick="pushAll()">📤 Push</button>
   <button class="warn" onclick="openAnchorModal()">⚓ 修改锚点</button>
+  <button class="warn" onclick="openCounterModal()">🔢 校准计数</button>
   <span class="sep"></span>
   <button class="gray" onclick="reload()">🔄 刷新</button>
   <button class="gray" onclick="toggleLog()">📋 日志</button>
@@ -177,6 +178,44 @@
     <div class="modal-footer">
       <button class="gray" onclick="closeAnchorModal()">取消</button>
       <button class="primary" onclick="saveAnchor()">保存</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-bg" id="counterModal">
+  <div class="modal" style="max-width:600px">
+    <div class="modal-header">
+      <h3>校准计数</h3>
+      <button class="gray small" onclick="closeCounterModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div style="font-size:13px;color:#666;margin-bottom:10px"><b>基准值（可编辑）</b></div>
+      <div class="form-row">
+        <label>校准日期</label>
+        <input type="date" id="counterDate" oninput="refreshCounterPreview()" onchange="refreshCounterPreview()">
+      </div>
+      <div class="form-row">
+        <label>第几天</label>
+        <input type="number" id="counterDay" min="1" placeholder="如 295" oninput="refreshCounterPreview()">
+      </div>
+      <div class="form-row">
+        <label>第几周</label>
+        <input type="number" id="counterWeek" min="1" placeholder="如 43" oninput="refreshCounterPreview()">
+      </div>
+      <div style="font-size:13px;color:#666;margin:16px 0 10px"><b>校准日推导（只读）</b></div>
+      <div class="form-row"><label>周几</label><span id="counterWeekday" style="color:#888">—</span></div>
+      <div class="form-row"><label>第几月</label><span id="counterMonth" style="color:#888">—</span></div>
+      <div class="form-row"><label>月内第几天</label><span id="counterDayInMonth" style="color:#888">—</span></div>
+      <div style="font-size:13px;color:#666;margin:16px 0 10px"><b>今天（<span id="counterTodayDate">—</span>）</b></div>
+      <div class="form-row"><label>日编号</label><span id="counterTodayDay" style="color:#888">—</span></div>
+      <div class="form-row"><label>周编号</label><span id="counterTodayWeek" style="color:#888">—</span></div>
+      <div class="form-row"><label>月编号</label><span id="counterTodayMonth" style="color:#888">—</span></div>
+      <div class="hint">只需填日期、天数、周数三项，其余自动推导。</div>
+    </div>
+    <div class="modal-footer">
+      <button class="danger" onclick="clearCounter()">清除校准</button>
+      <button class="gray" onclick="closeCounterModal()">取消</button>
+      <button class="primary" onclick="saveCounter()">保存</button>
     </div>
   </div>
 </div>
@@ -484,6 +523,108 @@ function openNewTaskModal() {
     body: JSON.stringify(data)
   }).then(function(r) {
     log(r.ok ? "✅ 已创建任务 " + r.id : "❌ 创建失败：" + (r.error || ""));
+    reload();
+  });
+}
+
+function openCounterModal() {
+  var cfg = state.schedule || {};
+  var ov = cfg.counter_override || {};
+  document.getElementById("counterDate").value = ov.date || new Date().toISOString().slice(0,10);
+  document.getElementById("counterDay").value = ov.day || "";
+  document.getElementById("counterWeek").value = ov.week || "";
+  refreshCounterPreview();
+  document.getElementById("counterModal").classList.add("visible");
+}
+
+function closeCounterModal() {
+  document.getElementById("counterModal").classList.remove("visible");
+}
+
+function refreshCounterPreview() {
+  var d = document.getElementById("counterDate").value;
+  var day = parseInt(document.getElementById("counterDay").value);
+  var week = parseInt(document.getElementById("counterWeek").value);
+  var names = ["周日","周一","周二","周三","周四","周五","周六"];
+
+  if (d) {
+    var baseDate = new Date(d + "T00:00:00Z");
+    var baseDow = baseDate.getUTCDay();
+    document.getElementById("counterWeekday").textContent = names[baseDow];
+    if (!isNaN(week) && week >= 1) {
+      var month = Math.floor((week - 1) / 4) + 1;
+      var weekInMonth = (week - 1) % 4;
+      var dim = weekInMonth * 7 + baseDow + 1;
+      document.getElementById("counterMonth").textContent = "第 " + month + " 月";
+      document.getElementById("counterDayInMonth").textContent = "第 " + dim + " 天";
+    } else {
+      document.getElementById("counterMonth").textContent = "—";
+      document.getElementById("counterDayInMonth").textContent = "—";
+    }
+  } else {
+    document.getElementById("counterWeekday").textContent = "—";
+    document.getElementById("counterMonth").textContent = "—";
+    document.getElementById("counterDayInMonth").textContent = "—";
+  }
+
+  api("/api/counter/today").then(function(cur) {
+    if (!cur || !cur.date) return;
+    document.getElementById("counterTodayDate").textContent = cur.date;
+
+    var hasInput = d && !isNaN(day) && !isNaN(week) && week >= 1;
+    if (!hasInput) {
+      document.getElementById("counterTodayDay").textContent = String(cur.day).padStart(3, "0");
+      document.getElementById("counterTodayWeek").textContent = String(cur.week).padStart(3, "0") + "（" + cur.weekday_name + "）";
+      document.getElementById("counterTodayMonth").textContent = String(cur.month).padStart(3, "0") + "（第 " + cur.day_in_month + " 天）";
+      return;
+    }
+
+    var todayDate = new Date(cur.date + "T00:00:00Z");
+    var baseDate = new Date(d + "T00:00:00Z");
+    var dayDelta = Math.round((todayDate - baseDate) / 86400000);
+    var todayDay = day + dayDelta;
+
+    var baseDow = baseDate.getUTCDay();
+    var baseSunday = new Date(baseDate.getTime() - baseDow * 86400000);
+    var sundayDelta = Math.round((todayDate - baseSunday) / 86400000);
+    var weekDelta = Math.floor(sundayDelta / 7);
+    var todayWeek = week + weekDelta;
+    var todayWeekday = ((sundayDelta % 7) + 7) % 7;
+
+    var todayMonth = Math.floor((todayWeek - 1) / 4) + 1;
+    var todayWeekInMonth = ((todayWeek - 1) % 4 + 4) % 4;
+    var todayDim = todayWeekInMonth * 7 + todayWeekday + 1;
+
+    document.getElementById("counterTodayDay").textContent = String(todayDay).padStart(3, "0");
+    document.getElementById("counterTodayWeek").textContent = String(todayWeek).padStart(3, "0") + "（" + names[todayWeekday] + "）";
+    document.getElementById("counterTodayMonth").textContent = String(todayMonth).padStart(3, "0") + "（第 " + todayDim + " 天）";
+  });
+}
+
+function saveCounter() {
+  var d = document.getElementById("counterDate").value;
+  var day = parseInt(document.getElementById("counterDay").value);
+  var week = parseInt(document.getElementById("counterWeek").value);
+  if (!d || isNaN(day) || day < 1 || isNaN(week) || week < 1) {
+    log("日期、天数、周数都要填，且 >= 1");
+    return;
+  }
+  api("/api/counter/override", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ date: d, day: day, week: week })
+  }).then(function(r) {
+    log(r.ok ? "校准已保存: " + d + " = 第 " + day + " 天 / 第 " + week + " 周" : "保存失败：" + (r.error || ""));
+    closeCounterModal();
+    reload();
+  });
+}
+
+function clearCounter() {
+  if (!confirm("清除校准，改用 anchor 自动计算？")) return;
+  api("/api/counter/override", { method: "DELETE" }).then(function(r) {
+    log(r.ok ? "校准已清除" : "清除失败：" + (r.error || ""));
+    closeCounterModal();
     reload();
   });
 }

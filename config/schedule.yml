@@ -1,7 +1,7 @@
 anchor: '2026-10-25'
 tasks:
 - id: 1
-  title: 每天运动
+  title: 体能训练
   frequency:
     period: 1
     offsets:
@@ -12,10 +12,11 @@ tasks:
     '
   enabled: true
 - id: 2
-  title: 每周三洗澡
+  title: 洗澡
   frequency:
     period: 7
     offsets:
+    - 0
     - 3
   link: ''
   description: 洗澡 1 次。

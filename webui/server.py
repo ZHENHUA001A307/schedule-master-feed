@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """Schedule Master Feed - WebUI backend (port 8766)"""
 
+import datetime
 import http.server
 import json
 import os
@@ -63,6 +64,23 @@ def git_commit_push(msg):
     return ok, out + err
 
 
+def get_counter_today():
+    sys.path.insert(0, str(PROJECT_ROOT / "src"))
+    import main as feed_main
+    today = datetime.datetime.utcnow().date()
+    schedule = read_schedule()
+    day, week, month, day_in_month, weekday_offset = feed_main.get_counter(schedule, today)
+    return {
+        "date": today.isoformat(),
+        "day": day,
+        "week": week,
+        "month": month,
+        "day_in_month": day_in_month,
+        "weekday_offset": weekday_offset,
+        "weekday_name": feed_main.WEEKDAY_NAMES[weekday_offset],
+    }
+
+
 class Handler(http.server.BaseHTTPRequestHandler):
     def log_message(self, fmt, *args):
         pass
@@ -99,6 +117,13 @@ class Handler(http.server.BaseHTTPRequestHandler):
             self._json(read_schedule())
             return
 
+        if parts == ["api", "counter", "today"]:
+            try:
+                self._json(get_counter_today())
+            except Exception as e:
+                self._json({"ok": False, "error": str(e)}, 500)
+            return
+
         if parts == ["api", "git", "status"]:
             self._json(git_status())
             return
@@ -128,6 +153,26 @@ class Handler(http.server.BaseHTTPRequestHandler):
                 with _lock:
                     cfg = read_schedule()
                     cfg["anchor"] = data["anchor"]
+                    write_schedule(cfg)
+                self._json({"ok": True})
+                return
+
+            if parts == ["api", "counter", "override"]:
+                if self.command == "DELETE":
+                    with _lock:
+                        cfg = read_schedule()
+                        cfg.pop("counter_override", None)
+                        write_schedule(cfg)
+                    self._json({"ok": True})
+                    return
+                data = json.loads(body)
+                with _lock:
+                    cfg = read_schedule()
+                    cfg["counter_override"] = {
+                        "date": data["date"],
+                        "day": int(data["day"]),
+                        "week": int(data["week"]),
+                    }
                     write_schedule(cfg)
                 self._json({"ok": True})
                 return

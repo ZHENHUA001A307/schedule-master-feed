@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""生成 routine-feed 的 feed.xml。也供 WebUI 预览调用。"""
+# 生成 routine-feed 的 feed.xml。也供 WebUI 预览调用。
 
 import argparse
 import datetime
@@ -18,6 +18,8 @@ KEEP = 5
 REPO = os.environ.get("GITHUB_REPOSITORY", "unknown/repo")
 DEFAULT_LINK = f"https://github.com/{REPO}"
 
+WEEKDAY_NAMES = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"]
+
 
 def cdata(text):
     text = "" if text is None else str(text)
@@ -29,8 +31,60 @@ def load_schedule():
         return yaml.safe_load(f) or {}
 
 
+def get_counter(schedule, today):
+    """返回 (day, week, month, day_in_month, weekday_offset)。
+
+    weekday_offset: 0=周日, 1=周一, ..., 6=周六
+
+    校准优先：counter_override = {date, day, week}
+             date 是校准日，day 是那天第几天，week 是那天第几周。
+             周的基准是 date 所在周的周日（自动反推）。
+
+    没校准时：anchor 是第 1 天，day=(today-anchor)+1。
+    """
+    override = schedule.get("counter_override")
+    if override and override.get("date"):
+        base_date = datetime.date.fromisoformat(str(override["date"]))
+        base_day = int(override["day"])
+        base_week = int(override["week"])
+
+        # base_date 所在周的周日（周日=0）
+        base_offset = (base_date.weekday() + 1) % 7
+        base_sunday = base_date - datetime.timedelta(days=base_offset)
+
+        day = base_day + (today - base_date).days
+
+        sunday_delta = (today - base_sunday).days
+        week_delta = sunday_delta // 7
+        week = base_week + week_delta
+        weekday_offset = sunday_delta % 7
+    else:
+        anchor = datetime.date.fromisoformat(str(schedule["anchor"]))
+        day = (today - anchor).days + 1
+        week = (day - 1) // 7 + 1
+        weekday_offset = (today.weekday() + 1) % 7
+
+    month = (week - 1) // 4 + 1
+    week_in_month = (week - 1) % 4
+    day_in_month = week_in_month * 7 + weekday_offset + 1
+
+    return day, week, month, day_in_month, weekday_offset
+
+
+def format_title(task, today, schedule):
+    day, week, month, day_in_month, weekday_offset = get_counter(schedule, today)
+    freq = task.get("frequency", {})
+    period = int(freq.get("period", 1))
+    title = task.get("title", "")
+    if period == 7:
+        return f"{week:03d}周 - {weekday_offset} - {title}"
+    if period == 28:
+        return f"{month:03d}月 - {day_in_month:02d} - {title}"
+    return f"{day:03d}日 - {title}"
+
+
 def due_tasks(schedule, today):
-    anchor = datetime.date.fromisoformat(schedule["anchor"])
+    anchor = datetime.date.fromisoformat(str(schedule["anchor"]))
     delta = (today - anchor).days
     out = []
     for task in schedule.get("tasks", []):
@@ -46,13 +100,15 @@ def due_tasks(schedule, today):
     return out
 
 
-def build_items(tasks, today):
+def build_items(tasks, today, schedule=None):
+    if schedule is None:
+        schedule = {"anchor": today.isoformat()}
     items = []
     for task in tasks:
         ts = today.strftime("%Y-%m-%dT%H:%M:%S")
         pub = today.strftime("%a, %d %b %Y %H:%M:%S +0000")
         guid = f"{task['id']}-{ts}"
-        title = task.get("title", "")
+        title = format_title(task, today, schedule)
         link = task.get("link", "") or DEFAULT_LINK
         desc = task.get("description", "") or ""
         items.append({
@@ -112,7 +168,7 @@ def build(today=None):
         today = datetime.datetime.utcnow().date()
     schedule = load_schedule()
     tasks = due_tasks(schedule, today)
-    return build_items(tasks, today)
+    return build_items(tasks, today, schedule)
 
 
 def main():
@@ -128,7 +184,7 @@ def main():
 
     schedule = load_schedule()
     tasks = due_tasks(schedule, today)
-    items = build_items(tasks, today)
+    items = build_items(tasks, today, schedule)
     for it in items:
         print(f"due: {it['id']} {it['title']}")
 
