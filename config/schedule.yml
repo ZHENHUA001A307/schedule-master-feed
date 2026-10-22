@@ -1,0 +1,35 @@
+anchor: '2026-10-25'
+tasks:
+- id: 1
+  title: 每天运动
+  frequency:
+    period: 1
+    offsets:
+    - 0
+  link: ''
+  description: '按既定训练计划完成。
+
+    '
+  enabled: true
+- id: 2
+  title: 每周三洗澡
+  frequency:
+    period: 7
+    offsets:
+    - 3
+  link: ''
+  description: 洗澡 1 次。
+  enabled: true
+- id: 3
+  title: 周日登记表格
+  frequency:
+    period: 7
+    offsets:
+    - 0
+  link: ''
+  description: '登记体重、尿酸、视力；
+
+    登记静息心率、平均入睡/醒来时间、睡眠时长。
+
+    '
+  enabled: true

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Schedule Master Feed</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+    max-width: 1200px; margin: 0 auto; padding: 16px;
+    background: #f5f5f7; color: #333; font-size: 14px;
+  }
+  h1 { margin: 0 0 16px; font-size: 22px; }
+  .toolbar {
+    position: sticky; top: 0; z-index: 10;
+    background: #fff; padding: 12px 16px;
+    border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,.08);
+    margin-bottom: 16px;
+    display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+  }
+  .toolbar .sep { flex: 1; }
+  button {
+    padding: 7px 14px; font-size: 13px;
+    border: none; border-radius: 6px;
+    cursor: pointer; transition: .15s;
+    font-family: inherit;
+  }
+  button:hover:not(:disabled) { opacity: .88; }
+  button:disabled { opacity: .45; cursor: not-allowed; }
+  button.primary { background: #007aff; color: #fff; }
+  button.success { background: #34c759; color: #fff; }
+  button.warn    { background: #ff9500; color: #fff; }
+  button.danger  { background: #ff3b30; color: #fff; }
+  button.gray    { background: #8e8e93; color: #fff; }
+  button.small   { padding: 4px 10px; font-size: 12px; }
+  table {
+    width: 100%; background: #fff;
+    border-collapse: collapse;
+    border-radius: 8px; overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,.08);
+  }
+  th, td { padding: 10px 12px; border-bottom: 1px solid #eee; text-align: left; vertical-align: middle; }
+  th { background: #fafafa; font-weight: 600; white-space: nowrap; font-size: 13px; }
+  tr.task-row:hover { background: #f9f9fb; }
+  tr.task-row.expanded { background: #f0f6ff; }
+  .task-title { font-weight: 600; }
+  .status-ok { color: #34c759; font-weight: 600; }
+  .status-off { color: #8e8e93; }
+  input[type="text"], input[type="date"], textarea {
+    padding: 5px 8px;
+    border: 1px solid #ddd; border-radius: 4px;
+    font-size: 13px; font-family: inherit;
+    background: #fff;
+  }
+  input:focus, textarea:focus {
+    outline: none; border-color: #007aff;
+    box-shadow: 0 0 0 3px rgba(0,122,255,.15);
+  }
+  textarea { width: 100%; min-height: 100px; resize: vertical; }
+  .detail-row { display: none; }
+  .detail-row.visible { display: table-row; }
+  .detail-row > td { padding: 0; background: #f8faff; }
+  .detail-panel {
+    padding: 16px 20px;
+    border-top: 1px solid #d5e3ff;
+  }
+  .form-row {
+    display: flex; align-items: center;
+    margin-bottom: 10px; gap: 8px;
+  }
+  .form-row label { flex: 0 0 100px; font-size: 13px; color: #666; }
+  .form-row input[type="text"], .form-row input[type="date"] { flex: 1; }
+  .form-row .hint { font-size: 12px; color: #999; }
+  .btn-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+  .weekday-btns { display: flex; gap: 4px; }
+  .weekday-btn {
+    padding: 4px 8px; font-size: 12px;
+    border: 1px solid #ddd; border-radius: 4px;
+    background: #fff; cursor: pointer;
+    font-family: inherit;
+  }
+  .weekday-btn.active { background: #007aff; color: #fff; border-color: #007aff; }
+  .modal-bg {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.45);
+    display: none; align-items: center; justify-content: center;
+    z-index: 100;
+  }
+  .modal-bg.visible { display: flex; }
+  .modal {
+    background: #fff; border-radius: 10px;
+    max-width: 700px; width: 92%;
+    max-height: 88vh; display: flex; flex-direction: column;
+    box-shadow: 0 10px 40px rgba(0,0,0,.3);
+  }
+  .modal-header {
+    padding: 16px 20px; border-bottom: 1px solid #eee;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .modal-header h3 { margin: 0; font-size: 16px; }
+  .modal-body { flex: 1; overflow-y: auto; padding: 16px 20px; }
+  .modal-footer {
+    padding: 12px 20px; border-top: 1px solid #eee;
+    display: flex; gap: 8px; justify-content: flex-end;
+  }
+  #log {
+    margin: 16px 0; padding: 12px;
+    background: #1e1e1e; color: #d4d4d4;
+    border-radius: 8px; font-family: Consolas, monospace;
+    font-size: 12px; max-height: 300px; overflow-y: auto;
+    white-space: pre-wrap; display: none;
+  }
+  #log.visible { display: block; }
+  .hint { color: #888; font-size: 12px; margin-top: 6px; }
+  select {
+    padding: 5px 8px;
+    border: 1px solid #ddd; border-radius: 4px;
+    font-size: 13px; font-family: inherit;
+    background: #fff;
+  }
+</style>
+</head>
+<body>
+
+<h1>Schedule Master Feed</h1>
+
+<div class="toolbar">
+  <button class="primary" onclick="saveAll()">💾 保存配置</button>
+  <button class="success" onclick="previewToday()">⚙️ 本地预览</button>
+  <button class="danger" onclick="pushAll()">📤 Push</button>
+  <button class="warn" onclick="openAnchorModal()">⚓ 修改锚点</button>
+  <span class="sep"></span>
+  <button class="gray" onclick="reload()">🔄 刷新</button>
+  <button class="gray" onclick="toggleLog()">📋 日志</button>
+</div>
+
+<div id="log"></div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width:60px">ID</th>
+      <th>标题</th>
+      <th style="width:240px">频率</th>
+      <th style="width:80px">状态</th>
+      <th style="width:80px">操作</th>
+    </tr>
+  </thead>
+  <tbody id="tbody">
+    <tr><td colspan="5" style="text-align:center;padding:40px;color:#999">加载中...</td></tr>
+  </tbody>
+</table>
+
+<div style="margin-top:16px">
+  <button class="primary" onclick="openNewTaskModal()">+ 添加任务</button>
+</div>
+
+<div class="hint">
+  频率说明：周期 1 天=每天；周期 7 天=每周（周日为第 0 天）；周期 28 天=每 4 周。<br>
+  锚点是第 1 周的第 1 天（周日）。当前锚点：<span id="anchorDisplay">—</span>
+</div>
+
+<div class="modal-bg" id="anchorModal">
+  <div class="modal" style="max-width:500px">
+    <div class="modal-header">
+      <h3>修改锚点</h3>
+      <button class="gray small" onclick="closeAnchorModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <label>锚点日期</label>
+        <input type="date" id="anchorDate">
+      </div>
+      <div class="hint">锚点应该是第 1 周的第 1 天（周日）。修改后所有周期计算会从新锚点开始。</div>
+    </div>
+    <div class="modal-footer">
+      <button class="gray" onclick="closeAnchorModal()">取消</button>
+      <button class="primary" onclick="saveAnchor()">保存</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-bg" id="previewModal">
+  <div class="modal" style="max-width:600px">
+    <div class="modal-header">
+      <h3>今日预览</h3>
+      <button class="gray small" onclick="closePreviewModal()">✕</button>
+    </div>
+    <div class="modal-body" id="previewBody">加载中...</div>
+    <div class="modal-footer">
+      <button class="gray" onclick="closePreviewModal()">关闭</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var state = { schedule: null };
+
+function log(msg) {
+  var el = document.getElementById("log");
+  el.classList.add("visible");
+  el.textContent += msg + "\n";
+  el.scrollTop = el.scrollHeight;
+}
+
+function toggleLog() {
+  document.getElementById("log").classList.toggle("visible");
+}
+
+function escapeHtml(s) {
+  return String(s == null ? "" : s).replace(/[&<>"]/g, function(c) {
+    var m = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" };
+    return m[c];
+  });
+}
+
+function api(path, opts) {
+  opts = opts || {};
+  return fetch(path, opts).then(function(r) {
+    return r.text().then(function(t) {
+      try { return JSON.parse(t); } catch (e) { return { raw: t }; }
+    });
+  });
+}
+
+function freqToText(freq) {
+  if (!freq) return "—";
+  var period = freq.period || 1;
+  var offsets = freq.offsets || [];
+  if (period === 1) return "每天";
+  if (period === 7) {
+    var names = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
+    return offsets.map(function(o) { return names[o] || ("第" + o + "天"); }).join(" ");
+  }
+  if (period === 28) {
+    return "每4周: " + offsets.map(function(o) { return "第" + (o + 1) + "天"; }).join(", ");
+  }
+  return "周期" + period + "天: " + offsets.join(",");
+}
+
+function reload() {
+  api("/api/schedule").then(function(cfg) {
+    state.schedule = cfg;
+    document.getElementById("anchorDisplay").textContent = cfg.anchor || "—";
+    renderTable();
+  });
+}
+
+function renderTable() {
+  var tbody = document.getElementById("tbody");
+  var tasks = (state.schedule && state.schedule.tasks) || [];
+  if (tasks.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:40px;color:#999">暂无任务</td></tr>';
+    return;
+  }
+  var html = "";
+  tasks.forEach(function(t) {
+    var enabled = t.enabled !== false;
+    var statusCls = enabled ? "status-ok" : "status-off";
+    var statusTxt = enabled ? "启用" : "停用";
+    html += '<tr class="task-row" data-id="' + t.id + '">';
+    html += '<td>' + t.id + '</td>';
+    html += '<td class="task-title">' + escapeHtml(t.title) + '</td>';
+    html += '<td>' + escapeHtml(freqToText(t.frequency)) + '</td>';
+    html += '<td class="' + statusCls + '">' + statusTxt + '</td>';
+    html += '<td><button class="gray small" onclick="toggleDetail(' + t.id + ', this)">▼</button></td>';
+    html += '</tr>';
+    html += '<tr class="detail-row" data-detail="' + t.id + '"><td colspan="5">' + renderDetail(t) + '</td></tr>';
+  });
+  tbody.innerHTML = html;
+}
+
+function renderDetail(t) {
+  var freq = t.frequency || { period: 1, offsets: [0] };
+  var period = freq.period || 1;
+  var offsets = freq.offsets || [];
+  var periodSel = period === 1 ? "daily" : (period === 7 ? "weekly" : "monthly");
+  var weekdays = [0,1,2,3,4,5,6];
+  var names = ["日","一","二","三","四","五","六"];
+  var wdBtns = "";
+  weekdays.forEach(function(d) {
+    var active = (period === 7 && offsets.indexOf(d) >= 0) ? " active" : "";
+    wdBtns += '<button type="button" class="weekday-btn' + active + '" data-day="' + d + '" onclick="toggleWeekday(this)">' + names[d] + '</button>';
+  });
+  var monthStr = period === 28 ? offsets.map(function(o) { return o + 1; }).join(",") : "";
+  var wdStyle = period === 7 ? "" : "display:none";
+  var mdStyle = period === 28 ? "" : "display:none";
+  return '<div class="detail-panel">' +
+    '<div class="form-row"><label>标题</label><input type="text" data-id="' + t.id + '" data-field="title" value="' + escapeHtml(t.title) + '"></div>' +
+    '<div class="form-row"><label>频率</label>' +
+      '<select data-id="' + t.id + '" data-field="period" onchange="onPeriodChange(this)">' +
+        '<option value="daily"' + (periodSel === "daily" ? " selected" : "") + '>每天</option>' +
+        '<option value="weekly"' + (periodSel === "weekly" ? " selected" : "") + '>每周</option>' +
+        '<option value="monthly"' + (periodSel === "monthly" ? " selected" : "") + '>每月（4 周）</option>' +
+      '</select>' +
+      '<span class="weekday-btns" data-id="' + t.id + '" style="' + wdStyle + '">' + wdBtns + '</span>' +
+      '<input type="text" data-id="' + t.id + '" data-field="monthdays" placeholder="如 1,15,28" value="' + escapeHtml(monthStr) + '" style="' + mdStyle + ';max-width:120px">' +
+    '</div>' +
+    '<div class="form-row"><label>描述</label><textarea data-id="' + t.id + '" data-field="description">' + escapeHtml(t.description || "") + '</textarea></div>' +
+    '<div class="form-row"><label>链接</label><input type="text" data-id="' + t.id + '" data-field="link" value="' + escapeHtml(t.link || "") + '" placeholder="留空则用仓库地址"></div>' +
+    '<div class="form-row"><label>启用</label><input type="checkbox" data-id="' + t.id + '" data-field="enabled" ' + (t.enabled !== false ? "checked" : "") + '></div>' +
+    '<div class="btn-row">' +
+      '<button class="primary small" onclick="saveTask(' + t.id + ')">保存本任务</button>' +
+      '<button class="danger small" onclick="deleteTask(' + t.id + ')">删除</button>' +
+    '</div>' +
+  '</div>';
+}
+
+function toggleDetail(id, btn) {
+  var row = document.querySelector('tr[data-detail="' + id + '"]');
+  var mainRow = document.querySelector('tr[data-id="' + id + '"]');
+  var visible = row.classList.toggle("visible");
+  mainRow.classList.toggle("expanded", visible);
+  btn.textContent = visible ? "▲" : "▼";
+}
+
+function toggleWeekday(btn) {
+  btn.classList.toggle("active");
+}
+
+function onPeriodChange(sel) {
+  var id = sel.dataset.id;
+  var val = sel.value;
+  var wdGroup = document.querySelector('.weekday-btns[data-id="' + id + '"]');
+  var mdInput = document.querySelector('input[data-id="' + id + '"][data-field="monthdays"]');
+  if (wdGroup) wdGroup.style.display = (val === "weekly") ? "" : "none";
+  if (mdInput) mdInput.style.display = (val === "monthly") ? "" : "none";
+}
+
+function collectTask(id) {
+  var titleEl = document.querySelector('input[data-id="' + id + '"][data-field="title"]');
+  var periodEl = document.querySelector('select[data-id="' + id + '"][data-field="period"]');
+  var descEl = document.querySelector('textarea[data-id="' + id + '"][data-field="description"]');
+  var linkEl = document.querySelector('input[data-id="' + id + '"][data-field="link"]');
+  var enabledEl = document.querySelector('input[data-id="' + id + '"][data-field="enabled"]');
+  var wdGroup = document.querySelector('.weekday-btns[data-id="' + id + '"]');
+  var mdInput = document.querySelector('input[data-id="' + id + '"][data-field="monthdays"]');
+
+  var periodSel = periodEl ? periodEl.value : "daily";
+  var frequency;
+  if (periodSel === "daily") {
+    frequency = { period: 1, offsets: [0] };
+  } else if (periodSel === "weekly") {
+    var offsets = [];
+    if (wdGroup) {
+      var btns = wdGroup.querySelectorAll(".weekday-btn.active");
+      for (var i = 0; i < btns.length; i++) {
+        offsets.push(parseInt(btns[i].dataset.day));
+      }
+    }
+    if (offsets.length === 0) offsets = [0];
+    frequency = { period: 7, offsets: offsets };
+  } else {
+    var days = [];
+    if (mdInput) {
+      mdInput.value.split(",").forEach(function(s) {
+        var n = parseInt(s.trim());
+        if (!isNaN(n) && n >= 1 && n <= 28) days.push(n - 1);
+      });
+    }
+    if (days.length === 0) days = [0];
+    frequency = { period: 28, offsets: days };
+  }
+
+  return {
+    title: titleEl ? titleEl.value : "",
+    frequency: frequency,
+    description: descEl ? descEl.value : "",
+    link: linkEl ? linkEl.value : "",
+    enabled: enabledEl ? enabledEl.checked : true
+  };
+}
+
+function saveTask(id) {
+  var data = collectTask(id);
+  api("/api/task/" + id, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  }).then(function(r) {
+    log(r.ok ? "✅ 任务 " + id + " 已保存" : "❌ 保存失败：" + (r.error || ""));
+    reload();
+  });
+}
+
+function deleteTask(id) {
+  if (!confirm("确定删除任务 " + id + "？")) return;
+  api("/api/task/" + id, { method: "DELETE" }).then(function(r) {
+    log(r.ok ? "✅ 任务 " + id + " 已删除" : "❌ 删除失败：" + (r.error || ""));
+    reload();
+  });
+}
+
+function saveAll() {
+  log("⏳ 保存所有任务...");
+  var tasks = (state.schedule && state.schedule.tasks) || [];
+  var promises = tasks.map(function(t) {
+    var data = collectTask(t.id);
+    return api("/api/task/" + t.id, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+  });
+  Promise.all(promises).then(function(results) {
+    var ok = results.every(function(r) { return r.ok; });
+    log(ok ? "✅ 全部保存完成" : "❌ 部分保存失败");
+    reload();
+  });
+}
+
+function previewToday() {
+  api("/api/preview").then(function(r) {
+    var items = (r && r.items) || [];
+    var body = document.getElementById("previewBody");
+    if (items.length === 0) {
+      body.innerHTML = '<div style="color:#999;text-align:center;padding:20px">今日无到期任务</div>';
+    } else {
+      var html = "";
+      items.forEach(function(it) {
+        html += '<div style="border:1px solid #eee;border-radius:6px;padding:12px;margin-bottom:10px">';
+        html += '<div style="font-weight:600;margin-bottom:6px">' + escapeHtml(it.title) + '</div>';
+        html += '<div style="font-size:12px;color:#888;margin-bottom:6px">ID: ' + it.id + '</div>';
+        html += '<div style="white-space:pre-wrap;font-size:13px">' + escapeHtml(it.description) + '</div>';
+        html += '</div>';
+      });
+      body.innerHTML = html;
+    }
+    document.getElementById("previewModal").classList.add("visible");
+  });
+}
+
+function closePreviewModal() {
+  document.getElementById("previewModal").classList.remove("visible");
+}
+
+function pushAll() {
+  if (!confirm("Push schedule.yml 到 GitHub？\n\n请确认已保存配置。")) return;
+  log("⏳ Push 中...");
+  api("/api/push", { method: "POST" }).then(function(r) {
+    log(r.output || "");
+    log(r.ok ? "✅ Push 完成" : "❌ Push 失败");
+  });
+}
+
+function openAnchorModal() {
+  var d = (state.schedule && state.schedule.anchor) || "";
+  document.getElementById("anchorDate").value = d;
+  document.getElementById("anchorModal").classList.add("visible");
+}
+
+function closeAnchorModal() {
+  document.getElementById("anchorModal").classList.remove("visible");
+}
+
+function saveAnchor() {
+  var d = document.getElementById("anchorDate").value;
+  if (!d) { log("❌ 锚点不能为空"); return; }
+  api("/api/schedule/anchor", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ anchor: d })
+  }).then(function(r) {
+    log(r.ok ? "✅ 锚点已更新为 " + d : "❌ 更新失败：" + (r.error || ""));
+    closeAnchorModal();
+    reload();
+  });
+}
+
+function openNewTaskModal() {
+  var title = prompt("新任务标题：");
+  if (!title) return;
+  var data = {
+    title: title,
+    frequency: { period: 1, offsets: [0] },
+    description: "",
+    link: "",
+    enabled: true
+  };
+  api("/api/task", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  }).then(function(r) {
+    log(r.ok ? "✅ 已创建任务 " + r.id : "❌ 创建失败：" + (r.error || ""));
+    reload();
+  });
+}
+
+reload();
+</script>
+</body>
+</html>
