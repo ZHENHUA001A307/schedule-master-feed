@@ -67,7 +67,7 @@ def git_commit_push(msg):
 def get_counter_today():
     sys.path.insert(0, str(PROJECT_ROOT / "src"))
     import main as feed_main
-    today = datetime.datetime.utcnow().date()
+    today = datetime.datetime.now(datetime.timezone.utc).date()
     schedule = read_schedule()
     day, week, month, day_in_month, weekday_offset = feed_main.get_counter(schedule, today)
     return {

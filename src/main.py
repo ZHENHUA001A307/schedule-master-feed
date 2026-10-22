@@ -165,7 +165,7 @@ def render_feed(item_xmls, today):
 
 def build(today=None):
     if today is None:
-        today = datetime.datetime.utcnow().date()
+        today = datetime.datetime.now(datetime.timezone.utc).date()
     schedule = load_schedule()
     tasks = due_tasks(schedule, today)
     return build_items(tasks, today, schedule)
@@ -180,7 +180,7 @@ def main():
     if args.date:
         today = datetime.date.fromisoformat(args.date)
     else:
-        today = datetime.datetime.utcnow().date()
+        today = datetime.datetime.now(datetime.timezone.utc).date()
 
     schedule = load_schedule()
     tasks = due_tasks(schedule, today)
