@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+<title>内务提醒</title>
+<link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
+<description>日常内务循环提醒</description>
+<lastBuildDate>Thu, 22 Oct 2026 00:00:00 +0000</lastBuildDate>
+<item>
+  <title><![CDATA[每天运动]]></title>
+  <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
+  <description><![CDATA[按既定训练计划完成。
+]]></description>
+  <guid isPermaLink="false">1-2026-10-22T00:00:00</guid>
+  <pubDate>Thu, 22 Oct 2026 00:00:00 +0000</pubDate>
+</item>
+</channel>
+</rss>
