@@ -1,7 +1,3 @@
-
-## 4. `_schedule_master/.github/workflows/feed.yml`
-
-```yaml
 name: routine-feed
 
 on:
