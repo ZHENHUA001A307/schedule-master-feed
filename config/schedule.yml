@@ -34,3 +34,7 @@ tasks:
 
     '
   enabled: true
+counter_override:
+  date: '2026-10-22'
+  day: 295
+  week: 43
