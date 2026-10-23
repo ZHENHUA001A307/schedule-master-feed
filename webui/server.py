@@ -60,6 +60,10 @@ def git_commit_push(msg):
     ok, out, err = git(["commit", "-m", msg])
     if not ok and "nothing to commit" not in (out + err):
         return False, err
+    ok, out, err = git(["pull", "--rebase", "origin", "main"], timeout=120)
+    if not ok:
+        git(["rebase", "--abort"])
+        return False, "pull --rebase failed: " + err
     ok, out, err = git(["push"])
     return ok, out + err
 
