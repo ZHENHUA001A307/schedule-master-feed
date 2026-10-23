@@ -14,12 +14,112 @@
   <pubDate>Thu, 22 Oct 2026 00:00:00 +0000</pubDate>
 </item>
 
+
 <item>
-  <title><![CDATA[296日 - 体能训练]]></title>
+  <title>296日 - 体能训练</title>
   <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
-  <description><![CDATA[按既定训练计划完成。
-]]></description>
+  <description>按既定训练计划完成。
+</description>
   <guid isPermaLink="false">1-2026-10-23T00:00:00</guid>
+  <pubDate>Fri, 23 Oct 2026 00:00:00 +0000</pubDate>
+</item>
+
+<item>
+  <title><![CDATA[296日 - 花销管理]]></title>
+  <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
+  <description><![CDATA[一、每周生活费
+1. 周一到周五：
+   - 早餐4元。
+   - 午餐8元。
+   - 晚餐8元。
+   - 每天吃饭20元。
+2. 周六和周日：
+   - 早餐4元。
+   - 午餐20元。
+   - 晚餐20元。
+   - 每天吃饭44元。
+3. 每天其他花销不超过15元。
+4. 每周其他花销不超过105元。
+5. 水费、电费、电话费合计不超过200元。
+
+二、物资采购
+1. 200元以下购物：每一月最多1次。
+2. 201元到1000元购物：每一季度最多1次。
+3. 超过1000元购物：每一年最多1次。
+4. 每次购物前，检查年度购物余额。
+   - 日常用品使用购物券。
+   - 设备、电器、配件使用闲鱼。
+   - 一切物品要求进一退一。]]></description>
+  <guid isPermaLink="false">4-2026-10-23T00:00:00</guid>
+  <pubDate>Fri, 23 Oct 2026 00:00:00 +0000</pubDate>
+</item>
+<item>
+  <title><![CDATA[043周 - 5 - 本周信息流]]></title>
+  <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
+  <description><![CDATA[信息流Powershell运行脚本
+@("https://www.zhihu.com/follow","https://www.zhihu.com/","https://tophub.today/hot","https://www.douban.com/","https://www.douban.com/explore/","https://www.douban.com/group/explore","https://www.douban.com/group/","https://theinitium.com/","https://m.douban.com/subject_collection/movie_weekly_best","https://www.bilibili.com/") | ForEach-Object { Start-Process $_; Start-Sleep -Milliseconds 300 }
+
+打开顺序
+========
+
+1. 知乎关注
+   https://www.zhihu.com/follow
+
+2. 知乎首页
+   https://www.zhihu.com/
+
+3. 今日热榜（周榜）
+   https://tophub.today/hot
+
+4. 豆瓣首页
+   https://www.douban.com/
+
+5. 豆瓣探索
+   https://www.douban.com/explore/
+
+6. 豆瓣小组探索
+   https://www.douban.com/group/explore
+
+7. 豆瓣小组
+   https://www.douban.com/group/
+
+8. 豆瓣每周最佳电影
+   https://m.douban.com/subject_collection/movie_weekly_best
+
+9. 哔哩哔哩
+   https://www.bilibili.com/
+
+10.端传媒
+   https://theinitium.com/]]></description>
+  <guid isPermaLink="false">5-2026-10-23T00:00:00</guid>
+  <pubDate>Fri, 23 Oct 2026 00:00:00 +0000</pubDate>
+</item>
+<item>
+  <title><![CDATA[296日 - 今日信息流]]></title>
+  <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
+  <description><![CDATA[1、Todo整理
+
+2、ANKI 100+300
+
+3、Feedbro
+
+4、Obsidian笔记复习整理
+ - Inbox
+ - Project
+ - Archive
+
+5、AI对话整理归档
+https://chat.deepseek.com/
+https://www.qianwen.com/
+https://gemini.google.com/app
+
+6、知乎收藏夹
+https://www.zhihu.com/collection/991688277
+
+7、新闻信息流补充
+https://tophub.today/daily
+https://news.kagi.com/world/latest]]></description>
+  <guid isPermaLink="false">6-2026-10-23T00:00:00</guid>
   <pubDate>Fri, 23 Oct 2026 00:00:00 +0000</pubDate>
 </item>
 </channel>
