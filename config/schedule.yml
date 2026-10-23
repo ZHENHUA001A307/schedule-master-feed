@@ -1,39 +1,169 @@
 anchor: '2026-10-25'
 tasks:
 - id: 1
-  title: 体能训练
+  title: 报表填写
   frequency:
-    period: 1
+    period: 7
     offsets:
     - 0
   link: ''
-  description: '按既定训练计划完成。
+  description: '1-填写总报表：体重、尿酸、视力
+
+    2-填写总报表：静息心率、平均入睡时间、平均醒来时间、睡眠时长
 
     '
   enabled: true
 - id: 2
-  title: 洗澡
+  title: 计算机整理
+  frequency:
+    period: 28
+    offsets:
+    - 24
+  link: ''
+  description: '5-归档微信传输助手、微信信息、微信联系人、微信同步
+
+    6-整理 Obsidian 书桌文件夹
+
+    7-整理 Notepad
+
+    8-整理 Firefox 书签文件夹
+
+    9-整理本地文件夹
+
+    10-整理移动硬盘/OneDrive
+
+    11-检查计时器与扬声器
+
+    12-设置 CareUEyes
+
+    13-清理浏览器历史、搜索缓存
+
+    14-检查摄像头挡板
+
+    15-检查IP地址安全、DNS、RTS'
+  enabled: true
+- id: 3
+  title: 手机整理
+  frequency:
+    period: 28
+    offsets:
+    - 14
+  link: ''
+  description: '1-清理存储空间
+
+    2-整理有声书存量：本周任务 + 下一本
+
+    3-整理微信聊天记录
+
+    4-清理微信搜索记录
+
+    5-清理 Telegram 历史
+
+    6-设置响铃
+
+    7-设置勿扰模式：通知 > 声音与振动
+
+    8-设置闹钟
+
+    9-设置定时开关机：系统
+
+    10-设置微信控制模式
+
+    11-配置 MultiTTS：字节跳动 BV701 23 50 28
+
+    12-整理有声书存量：本周任务 + 下一本
+
+    14-设置 20 秒护眼
+
+    15-设置屏幕使用时长限制
+
+    16-检查手表耳机连接
+
+    17-执行全盘扫描
+
+    18-执行反间谍软件扫描
+
+    19-清理浏览器历史
+
+    20-清理设置搜索历史
+
+    21-Anki obsidian同步'
+  enabled: true
+- title: 花销管理
+  frequency:
+    period: 1
+    offsets:
+    - 0
+  description: "一、每周生活费\n1. 周一到周五：\n   - 早餐4元。\n   - 午餐8元。\n   - 晚餐8元。\n   - 每天吃饭20元。\n\
+    2. 周六和周日：\n   - 早餐4元。\n   - 午餐20元。\n   - 晚餐20元。\n   - 每天吃饭44元。\n3. 每天其他花销不超过15元。\n\
+    4. 每周其他花销不超过105元。\n5. 水费、电费、电话费合计不超过200元。\n\n二、物资采购\n1. 200元以下购物：每一月最多1次。\n2.\
+    \ 201元到1000元购物：每一季度最多1次。\n3. 超过1000元购物：每一年最多1次。\n4. 每次购物前，检查年度购物余额。\n   - 日常用品使用购物券。\n\
+    \   - 设备、电器、配件使用闲鱼。\n   - 一切物品要求进一退一。"
+  link: ''
+  enabled: true
+  id: 4
+- title: 本周信息流
+  frequency:
+    period: 7
+    offsets:
+    - 5
+  description: "信息流Powershell运行脚本\n@(\"https://www.zhihu.com/follow\",\"https://www.zhihu.com/\"\
+    ,\"https://tophub.today/hot\",\"https://www.douban.com/\",\"https://www.douban.com/explore/\"\
+    ,\"https://www.douban.com/group/explore\",\"https://www.douban.com/group/\",\"\
+    https://theinitium.com/\",\"https://m.douban.com/subject_collection/movie_weekly_best\"\
+    ,\"https://www.bilibili.com/\") | ForEach-Object { Start-Process $_; Start-Sleep\
+    \ -Milliseconds 300 }\n\n打开顺序\n========\n\n1. 知乎关注\n   https://www.zhihu.com/follow\n\
+    \n2. 知乎首页\n   https://www.zhihu.com/\n\n3. 今日热榜（周榜）\n   https://tophub.today/hot\n\
+    \n4. 豆瓣首页\n   https://www.douban.com/\n\n5. 豆瓣探索\n   https://www.douban.com/explore/\n\
+    \n6. 豆瓣小组探索\n   https://www.douban.com/group/explore\n\n7. 豆瓣小组\n   https://www.douban.com/group/\n\
+    \n8. 豆瓣每周最佳电影\n   https://m.douban.com/subject_collection/movie_weekly_best\n\n\
+    9. 哔哩哔哩\n   https://www.bilibili.com/\n\n10.端传媒\n   https://theinitium.com/"
+  link: ''
+  enabled: true
+  id: 5
+- title: 今日信息流
+  frequency:
+    period: 1
+    offsets:
+    - 0
+  description: "1、Todo整理\n\n2、ANKI 100+300\n\n3、Obsidian笔记复习整理\n - Inbox\n - Project\n\
+    \ - Archive\n\n4、AI对话整理归档\nhttps://chat.deepseek.com/\nhttps://www.qianwen.com/\n\
+    https://gemini.google.com/app\n\n5、知乎收藏夹\nhttps://www.zhihu.com/collection/991688277\n\
+    \n6、新闻信息流补充\nhttps://tophub.today/daily\nhttps://news.kagi.com/world/latest"
+  link: ''
+  enabled: true
+  id: 6
+- title: 洗澡
   frequency:
     period: 7
     offsets:
     - 0
     - 3
+  description: ''
   link: ''
-  description: 洗澡 1 次。
   enabled: true
-- id: 3
-  title: 周日登记表格
+  id: 7
+- title: 体能训练
   frequency:
-    period: 7
+    period: 1
     offsets:
     - 0
+  description: "1. 引体向上\n   做12次。\n   做2组。\n\n2. 俯卧撑\n   做20次。\n   做2组。\n\n3. 深蹲\n\
+    \   做20次。\n   做2组。\n\n4. 长跑\n   跑3 km。\n   时间15 min。\n"
   link: ''
-  description: '登记体重、尿酸、视力；
-
-    登记静息心率、平均入睡/醒来时间、睡眠时长。
-
-    '
   enabled: true
+  id: 8
+- title: 饮食
+  frequency:
+    period: 1
+    offsets:
+    - 0
+  description: "一、食堂就餐\n - 早餐：面包1个+无糖豆浆1盒。\n - 午晚餐：米饭每餐100 g；素菜:荤菜:米饭=2:1:1。\n - 禁购：零食、含糖饮料、果汁、奶茶、路边摊小吃。\n\
+    \ - 饮水：全天3000 mL。\n\n二、周末饮食\n - 周五晚餐：朝鲜冷面\n - 周六午餐：青椒肉丝盖浇饭\n - 周日午餐：炸酱面+牛肉丸汤\n\
+    \ - 周日晚餐：酸菜猪肉馅水饺\n\n三、出差桌餐\n - 酒水：不喝\n - 含糖饮料：一次喝1/3，不超过5杯\n - 比例：米饭1小碗；素菜:荤菜:米饭=2:1:1"
+  link: ''
+  enabled: true
+  id: 9
 counter_override:
   date: '2026-10-22'
   day: 295
