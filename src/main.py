@@ -134,11 +134,12 @@ def merge_with_existing(items, today):
             print(f"[warn] parse old feed failed: {e}", file=sys.stderr)
     pub = today.strftime("%a, %d %b %Y %H:%M:%S +0000")
     for it in items:
+        desc_html = (it['description'] or '').replace('\n', '<br>')
         xml = (
             "<item>\n"
             f"  <title>{cdata(it['title'])}</title>\n"
             f"  <link>{it['link']}</link>\n"
-            f"  <description>{cdata(it['description'])}</description>\n"
+            f"  <description>{cdata(desc_html)}</description>\n"
             f'  <guid isPermaLink="false">{it["guid"]}</guid>\n'
             f"  <pubDate>{it['pubDate']}</pubDate>\n"
             "</item>"
