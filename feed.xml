@@ -4,7 +4,7 @@
 <title>内务提醒</title>
 <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
 <description>日常内务循环提醒</description>
-<lastBuildDate>Fri, 23 Oct 2026 00:00:00 +0000</lastBuildDate>
+<lastBuildDate>Sat, 24 Oct 2026 00:00:00 +0000</lastBuildDate>
 <item>
   <title>每天运动</title>
   <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
@@ -15,17 +15,9 @@
 </item>
 
 
-<item>
-  <title>296日 - 体能训练</title>
-  <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
-  <description>按既定训练计划完成。
-</description>
-  <guid isPermaLink="false">1-2026-10-23T00:00:00</guid>
-  <pubDate>Fri, 23 Oct 2026 00:00:00 +0000</pubDate>
-</item>
 
 <item>
-  <title><![CDATA[296日 - 花销管理]]></title>
+  <title><![CDATA[297日 - 花销管理]]></title>
   <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
   <description><![CDATA[一、每周生活费
 1. 周一到周五：
@@ -50,52 +42,11 @@
    - 日常用品使用购物券。
    - 设备、电器、配件使用闲鱼。
    - 一切物品要求进一退一。]]></description>
-  <guid isPermaLink="false">4-2026-10-23T00:00:00</guid>
-  <pubDate>Fri, 23 Oct 2026 00:00:00 +0000</pubDate>
+  <guid isPermaLink="false">4-2026-10-24T00:00:00</guid>
+  <pubDate>Sat, 24 Oct 2026 00:00:00 +0000</pubDate>
 </item>
 <item>
-  <title><![CDATA[043周 - 5 - 本周信息流]]></title>
-  <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
-  <description><![CDATA[信息流Powershell运行脚本
-@("https://www.zhihu.com/follow","https://www.zhihu.com/","https://tophub.today/hot","https://www.douban.com/","https://www.douban.com/explore/","https://www.douban.com/group/explore","https://www.douban.com/group/","https://theinitium.com/","https://m.douban.com/subject_collection/movie_weekly_best","https://www.bilibili.com/") | ForEach-Object { Start-Process $_; Start-Sleep -Milliseconds 300 }
-
-打开顺序
-========
-
-1. 知乎关注
-   https://www.zhihu.com/follow
-
-2. 知乎首页
-   https://www.zhihu.com/
-
-3. 今日热榜（周榜）
-   https://tophub.today/hot
-
-4. 豆瓣首页
-   https://www.douban.com/
-
-5. 豆瓣探索
-   https://www.douban.com/explore/
-
-6. 豆瓣小组探索
-   https://www.douban.com/group/explore
-
-7. 豆瓣小组
-   https://www.douban.com/group/
-
-8. 豆瓣每周最佳电影
-   https://m.douban.com/subject_collection/movie_weekly_best
-
-9. 哔哩哔哩
-   https://www.bilibili.com/
-
-10.端传媒
-   https://theinitium.com/]]></description>
-  <guid isPermaLink="false">5-2026-10-23T00:00:00</guid>
-  <pubDate>Fri, 23 Oct 2026 00:00:00 +0000</pubDate>
-</item>
-<item>
-  <title><![CDATA[296日 - 今日信息流]]></title>
+  <title><![CDATA[297日 - 今日信息流]]></title>
   <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
   <description><![CDATA[1、Todo整理
 
@@ -119,8 +70,52 @@ https://www.zhihu.com/collection/991688277
 7、新闻信息流补充
 https://tophub.today/daily
 https://news.kagi.com/world/latest]]></description>
-  <guid isPermaLink="false">6-2026-10-23T00:00:00</guid>
-  <pubDate>Fri, 23 Oct 2026 00:00:00 +0000</pubDate>
+  <guid isPermaLink="false">6-2026-10-24T00:00:00</guid>
+  <pubDate>Sat, 24 Oct 2026 00:00:00 +0000</pubDate>
+</item>
+<item>
+  <title><![CDATA[297日 - 体能训练]]></title>
+  <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
+  <description><![CDATA[1. 引体向上
+   做12次。
+   做2组。
+
+2. 俯卧撑
+   做20次。
+   做2组。
+
+3. 深蹲
+   做20次。
+   做2组。
+
+4. 长跑
+   跑3 km。
+   时间15 min。
+]]></description>
+  <guid isPermaLink="false">8-2026-10-24T00:00:00</guid>
+  <pubDate>Sat, 24 Oct 2026 00:00:00 +0000</pubDate>
+</item>
+<item>
+  <title><![CDATA[297日 - 饮食]]></title>
+  <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
+  <description><![CDATA[一、食堂就餐
+ - 早餐：面包1个+无糖豆浆1盒。
+ - 午晚餐：米饭每餐100 g；素菜:荤菜:米饭=2:1:1。
+ - 禁购：零食、含糖饮料、果汁、奶茶、路边摊小吃。
+ - 饮水：全天3000 mL。
+
+二、周末饮食
+ - 周五晚餐：朝鲜冷面
+ - 周六午餐：青椒肉丝盖浇饭
+ - 周日午餐：炸酱面+牛肉丸汤
+ - 周日晚餐：酸菜猪肉馅水饺
+
+三、出差桌餐
+ - 酒水：不喝
+ - 含糖饮料：一次喝1/3，不超过5杯
+ - 比例：米饭1小碗；素菜:荤菜:米饭=2:1:1]]></description>
+  <guid isPermaLink="false">9-2026-10-24T00:00:00</guid>
+  <pubDate>Sat, 24 Oct 2026 00:00:00 +0000</pubDate>
 </item>
 </channel>
 </rss>
