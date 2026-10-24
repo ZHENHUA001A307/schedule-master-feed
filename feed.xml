@@ -16,10 +16,11 @@
 
 
 
+
 <item>
-  <title><![CDATA[297日 - 花销管理]]></title>
+  <title>297日 - 花销管理</title>
   <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
-  <description><![CDATA[一、每周生活费
+  <description>一、每周生活费
 1. 周一到周五：
    - 早餐4元。
    - 午餐8元。
@@ -41,14 +42,15 @@
 4. 每次购物前，检查年度购物余额。
    - 日常用品使用购物券。
    - 设备、电器、配件使用闲鱼。
-   - 一切物品要求进一退一。]]></description>
+   - 一切物品要求进一退一。</description>
   <guid isPermaLink="false">4-2026-10-24T00:00:00</guid>
   <pubDate>Sat, 24 Oct 2026 00:00:00 +0000</pubDate>
 </item>
+
 <item>
-  <title><![CDATA[297日 - 今日信息流]]></title>
+  <title>297日 - 今日信息流</title>
   <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
-  <description><![CDATA[1、Todo整理
+  <description>1、Todo整理
 
 2、ANKI 100+300
 
@@ -69,14 +71,15 @@ https://www.zhihu.com/collection/991688277
 
 7、新闻信息流补充
 https://tophub.today/daily
-https://news.kagi.com/world/latest]]></description>
+https://news.kagi.com/world/latest</description>
   <guid isPermaLink="false">6-2026-10-24T00:00:00</guid>
   <pubDate>Sat, 24 Oct 2026 00:00:00 +0000</pubDate>
 </item>
+
 <item>
-  <title><![CDATA[297日 - 体能训练]]></title>
+  <title>297日 - 体能训练</title>
   <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
-  <description><![CDATA[1. 引体向上
+  <description>1. 引体向上
    做12次。
    做2组。
 
@@ -91,14 +94,15 @@ https://news.kagi.com/world/latest]]></description>
 4. 长跑
    跑3 km。
    时间15 min。
-]]></description>
+</description>
   <guid isPermaLink="false">8-2026-10-24T00:00:00</guid>
   <pubDate>Sat, 24 Oct 2026 00:00:00 +0000</pubDate>
 </item>
+
 <item>
-  <title><![CDATA[297日 - 饮食]]></title>
+  <title>297日 - 饮食</title>
   <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
-  <description><![CDATA[一、食堂就餐
+  <description>一、食堂就餐
  - 早餐：面包1个+无糖豆浆1盒。
  - 午晚餐：米饭每餐100 g；素菜:荤菜:米饭=2:1:1。
  - 禁购：零食、含糖饮料、果汁、奶茶、路边摊小吃。
@@ -113,9 +117,10 @@ https://news.kagi.com/world/latest]]></description>
 三、出差桌餐
  - 酒水：不喝
  - 含糖饮料：一次喝1/3，不超过5杯
- - 比例：米饭1小碗；素菜:荤菜:米饭=2:1:1]]></description>
+ - 比例：米饭1小碗；素菜:荤菜:米饭=2:1:1</description>
   <guid isPermaLink="false">9-2026-10-24T00:00:00</guid>
   <pubDate>Sat, 24 Oct 2026 00:00:00 +0000</pubDate>
 </item>
+
 </channel>
 </rss>
