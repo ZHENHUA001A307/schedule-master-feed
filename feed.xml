@@ -4,7 +4,7 @@
 <title>内务提醒</title>
 <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
 <description>日常内务循环提醒</description>
-<lastBuildDate>Sat, 24 Oct 2026 00:00:00 +0000</lastBuildDate>
+<lastBuildDate>Sun, 25 Oct 2026 00:00:00 +0000</lastBuildDate>
 <item>
   <title>每天运动</title>
   <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
@@ -17,110 +17,34 @@
 
 
 
-<item>
-  <title>297日 - 花销管理</title>
-  <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
-  <description>一、每周生活费
-1. 周一到周五：
-   - 早餐4元。
-   - 午餐8元。
-   - 晚餐8元。
-   - 每天吃饭20元。
-2. 周六和周日：
-   - 早餐4元。
-   - 午餐20元。
-   - 晚餐20元。
-   - 每天吃饭44元。
-3. 每天其他花销不超过15元。
-4. 每周其他花销不超过105元。
-5. 水费、电费、电话费合计不超过200元。
-
-二、物资采购
-1. 200元以下购物：每一月最多1次。
-2. 201元到1000元购物：每一季度最多1次。
-3. 超过1000元购物：每一年最多1次。
-4. 每次购物前，检查年度购物余额。
-   - 日常用品使用购物券。
-   - 设备、电器、配件使用闲鱼。
-   - 一切物品要求进一退一。</description>
-  <guid isPermaLink="false">4-2026-10-24T00:00:00</guid>
-  <pubDate>Sat, 24 Oct 2026 00:00:00 +0000</pubDate>
-</item>
 
 <item>
-  <title>297日 - 今日信息流</title>
+  <title><![CDATA[044周 - 0 - 报表填写]]></title>
   <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
-  <description>1、Todo整理
-
-2、ANKI 100+300
-
-3、Feedbro
-
-4、Obsidian笔记复习整理
- - Inbox
- - Project
- - Archive
-
-5、AI对话整理归档
-https://chat.deepseek.com/
-https://www.qianwen.com/
-https://gemini.google.com/app
-
-6、知乎收藏夹
-https://www.zhihu.com/collection/991688277
-
-7、新闻信息流补充
-https://tophub.today/daily
-https://news.kagi.com/world/latest</description>
-  <guid isPermaLink="false">6-2026-10-24T00:00:00</guid>
-  <pubDate>Sat, 24 Oct 2026 00:00:00 +0000</pubDate>
+  <description><![CDATA[1-填写总报表：体重、尿酸、视力<br>2-填写总报表：静息心率、平均入睡时间、平均醒来时间、睡眠时长<br>]]></description>
+  <guid isPermaLink="false">1-2026-10-25T00:00:00</guid>
+  <pubDate>Sun, 25 Oct 2026 00:00:00 +0000</pubDate>
 </item>
-
 <item>
-  <title>297日 - 体能训练</title>
+  <title><![CDATA[298日 - 花销管理]]></title>
   <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
-  <description>1. 引体向上
-   做12次。
-   做2组。
-
-2. 俯卧撑
-   做20次。
-   做2组。
-
-3. 深蹲
-   做20次。
-   做2组。
-
-4. 长跑
-   跑3 km。
-   时间15 min。
-</description>
-  <guid isPermaLink="false">8-2026-10-24T00:00:00</guid>
-  <pubDate>Sat, 24 Oct 2026 00:00:00 +0000</pubDate>
+  <description><![CDATA[一、每周生活费<br>1. 周一到周五：<br>   - 早餐4元。<br>   - 午餐8元。<br>   - 晚餐8元。<br>   - 每天吃饭20元。<br>2. 周六和周日：<br>   - 早餐4元。<br>   - 午餐20元。<br>   - 晚餐20元。<br>   - 每天吃饭44元。<br>3. 每天其他花销不超过15元。<br>4. 每周其他花销不超过105元。<br>5. 水费、电费、电话费合计不超过200元。<br><br>二、物资采购<br>1. 200元以下购物：每一月最多1次。<br>2. 201元到1000元购物：每一季度最多1次。<br>3. 超过1000元购物：每一年最多1次。<br>4. 每次购物前，检查年度购物余额。<br>   - 日常用品使用购物券。<br>   - 设备、电器、配件使用闲鱼。<br>   - 一切物品要求进一退一。]]></description>
+  <guid isPermaLink="false">4-2026-10-25T00:00:00</guid>
+  <pubDate>Sun, 25 Oct 2026 00:00:00 +0000</pubDate>
 </item>
-
 <item>
-  <title>297日 - 饮食</title>
+  <title><![CDATA[298日 - 今日信息流]]></title>
   <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
-  <description>一、食堂就餐
- - 早餐：面包1个+无糖豆浆1盒。
- - 午晚餐：米饭每餐100 g；素菜:荤菜:米饭=2:1:1。
- - 禁购：零食、含糖饮料、果汁、奶茶、路边摊小吃。
- - 饮水：全天3000 mL。
-
-二、周末饮食
- - 周五晚餐：朝鲜冷面
- - 周六午餐：青椒肉丝盖浇饭
- - 周日午餐：炸酱面+牛肉丸汤
- - 周日晚餐：酸菜猪肉馅水饺
-
-三、出差桌餐
- - 酒水：不喝
- - 含糖饮料：一次喝1/3，不超过5杯
- - 比例：米饭1小碗；素菜:荤菜:米饭=2:1:1</description>
-  <guid isPermaLink="false">9-2026-10-24T00:00:00</guid>
-  <pubDate>Sat, 24 Oct 2026 00:00:00 +0000</pubDate>
+  <description><![CDATA[1、Todo整理<br><br>2、ANKI 100+300<br><br>3、Feedbro<br><br>4、Obsidian笔记复习整理<br> - Inbox<br> - Project<br> - Archive<br><br>5、AI对话整理归档<br>https://chat.deepseek.com/<br>https://www.qianwen.com/<br>https://gemini.google.com/app<br><br>6、知乎收藏夹<br>https://www.zhihu.com/collection/991688277<br><br>7、新闻信息流补充<br>https://tophub.today/daily<br>https://news.kagi.com/world/latest]]></description>
+  <guid isPermaLink="false">6-2026-10-25T00:00:00</guid>
+  <pubDate>Sun, 25 Oct 2026 00:00:00 +0000</pubDate>
 </item>
-
+<item>
+  <title><![CDATA[044周 - 0 - 洗澡]]></title>
+  <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
+  <description><![CDATA[]]></description>
+  <guid isPermaLink="false">7-2026-10-25T00:00:00</guid>
+  <pubDate>Sun, 25 Oct 2026 00:00:00 +0000</pubDate>
+</item>
 </channel>
 </rss>
