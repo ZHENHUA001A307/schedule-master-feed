@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# 生成 routine-feed 的 feed.xml。也供 WebUI 预览调用。
+# 生成 routine-feed 的 feed.xml。
 
 import argparse
 import datetime
 import os
+import re
 import sys
-import xml.etree.ElementTree as ET
+from email.utils import parsedate_to_datetime
 from pathlib import Path
 
 import yaml
@@ -32,31 +33,17 @@ def load_schedule():
 
 
 def get_counter(schedule, today):
-    """返回 (day, week, month, day_in_month, weekday_offset)。
-
-    weekday_offset: 0=周日, 1=周一, ..., 6=周六
-
-    校准优先：counter_override = {date, day, week}
-             date 是校准日，day 是那天第几天，week 是那天第几周。
-             周的基准是 date 所在周的周日（自动反推）。
-
-    没校准时：anchor 是第 1 天，day=(today-anchor)+1。
-    """
     override = schedule.get("counter_override")
     if override and override.get("date"):
         base_date = datetime.date.fromisoformat(str(override["date"]))
         base_day = int(override["day"])
         base_week = int(override["week"])
-
-        # base_date 所在周的周日（周日=0）
         base_offset = (base_date.weekday() + 1) % 7
         base_sunday = base_date - datetime.timedelta(days=base_offset)
-
+        
         day = base_day + (today - base_date).days
-
         sunday_delta = (today - base_sunday).days
-        week_delta = sunday_delta // 7
-        week = base_week + week_delta
+        week = base_week + sunday_delta // 7
         weekday_offset = sunday_delta % 7
     else:
         anchor = datetime.date.fromisoformat(str(schedule["anchor"]))
@@ -104,9 +91,13 @@ def build_items(tasks, today, schedule=None):
     if schedule is None:
         schedule = {"anchor": today.isoformat()}
     items = []
+    
+    # 使用真实运行时间作为 pubDate 和 guid 的一部分，避免时序错乱
+    now_utc = datetime.datetime.now(datetime.timezone.utc)
+    ts = now_utc.strftime("%Y-%m-%dT%H:%M:%S")
+    pub = now_utc.strftime("%a, %d %b %Y %H:%M:%S +0000")
+    
     for task in tasks:
-        ts = today.strftime("%Y-%m-%dT%H:%M:%S")
-        pub = today.strftime("%a, %d %b %Y %H:%M:%S +0000")
         guid = f"{task['id']}-{ts}"
         title = format_title(task, today, schedule)
         link = task.get("link", "") or DEFAULT_LINK
@@ -126,13 +117,23 @@ def merge_with_existing(items, today):
     existing = []
     if FEED.exists():
         try:
-            root = ET.parse(FEED).getroot()
-            for it in root.findall("./channel/item"):
-                pub = it.findtext("pubDate") or ""
-                existing.append((pub, ET.tostring(it, encoding="unicode")))
+            text = FEED.read_text(encoding="utf-8")
+            # 直接用正则提取，不经过 XML 解析器，彻底保护 <br> 和 CDATA
+            item_blocks = re.findall(r'<item>.*?</item>', text, re.DOTALL)
+            for block in item_blocks:
+                pub_match = re.search(r'<pubDate>(.*?)</pubDate>', block)
+                if pub_match:
+                    try:
+                        dt = parsedate_to_datetime(pub_match.group(1))
+                        existing.append((dt, block.strip()))
+                    except Exception:
+                        pass
         except Exception as e:
             print(f"[warn] parse old feed failed: {e}", file=sys.stderr)
-    pub = today.strftime("%a, %d %b %Y %H:%M:%S +0000")
+
+    now_utc = datetime.datetime.now(datetime.timezone.utc)
+    pub = now_utc.strftime("%a, %d %b %Y %H:%M:%S +0000")
+    
     for it in items:
         desc_html = (it['description'] or '').replace('\n', '<br>')
         xml = (
@@ -141,16 +142,19 @@ def merge_with_existing(items, today):
             f"  <link>{it['link']}</link>\n"
             f"  <description>{cdata(desc_html)}</description>\n"
             f'  <guid isPermaLink="false">{it["guid"]}</guid>\n'
-            f"  <pubDate>{it['pubDate']}</pubDate>\n"
+            f"  <pubDate>{pub}</pubDate>\n"
             "</item>"
         )
-        existing.append((pub, xml))
+        existing.append((now_utc, xml))
+
+    # 按真实 datetime 对象降序排序，最新的一定在最前面
     existing.sort(key=lambda x: x[0], reverse=True)
     return [x[1] for x in existing[:KEEP]]
 
 
 def render_feed(item_xmls, today):
-    pub = today.strftime("%a, %d %b %Y %H:%M:%S +0000")
+    now_utc = datetime.datetime.now(datetime.timezone.utc)
+    pub = now_utc.strftime("%a, %d %b %Y %H:%M:%S +0000")
     return (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<rss version="2.0">\n'
