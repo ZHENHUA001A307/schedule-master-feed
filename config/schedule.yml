@@ -149,8 +149,8 @@ tasks:
     period: 1
     offsets:
     - 0
-  description: "1. 引体向上\n   做12次。\n   做2组。\n\n2. 俯卧撑\n   做20次。\n   做4组。\n\n3. 深蹲\n\
-    \   做20次。\n   做4组。\n\n4. 长跑\n   跑3 km。\n   时间15 min。\n"
+  description: "1. 引体向上\n - 做12次。\n - 做2组。\n\n2. 俯卧撑\n - 做20次。\n - 做4组。\n\n3. 深蹲\n\
+    \ - 做20次。\n - 做4组。\n\n4. 长跑\n - 跑3 km。\n - 时间15 min。\n"
   link: ''
   enabled: true
   id: 8
