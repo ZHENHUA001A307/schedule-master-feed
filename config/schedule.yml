@@ -127,9 +127,9 @@ tasks:
     period: 1
     offsets:
     - 0
-  description: "1、Todo整理\n\n2、ANKI 100+300\n\n3、Feedbro\n\n4、Obsidian笔记复习整理\n - Inbox\n\
-    \ - Project\n - Archive\n\n5、AI对话整理归档\nhttps://chat.deepseek.com/\nhttps://www.qianwen.com/\n\
-    https://gemini.google.com/app\n\n6、知乎收藏夹\nhttps://www.zhihu.com/collection/991688277\n\
+  description: "1、日常计划\n - ANKI 100+300\n\n2、Todo整理\n\n3、Feedbro\n\n4、Obsidian笔记复习整理\n\
+    \ - Inbox\n - Project\n - Archive\n\n5、AI对话整理归档\nhttps://chat.deepseek.com/\n\
+    https://www.qianwen.com/\nhttps://gemini.google.com/app\n\n6、知乎收藏夹\nhttps://www.zhihu.com/collection/991688277\n\
     \n7、新闻信息流补充\nhttps://tophub.today/daily\nhttps://news.kagi.com/world/latest"
   link: ''
   enabled: true
