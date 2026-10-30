@@ -106,19 +106,19 @@ tasks:
   frequency:
     period: 7
     offsets:
-    - 3
     - 5
   description: "信息流Powershell运行脚本\n@(\"https://www.zhihu.com/follow\",\"https://www.zhihu.com/\"\
     ,\"https://tophub.today/hot\",\"https://www.douban.com/\",\"https://www.douban.com/explore/\"\
     ,\"https://www.douban.com/group/explore\",\"https://www.douban.com/group/\",\"\
-    https://www.douban.com/group/\",\"https://theinitium.com/\",\"https://m.douban.com/subject_collection/movie_weekly_best\"\
-    ,\"https://www.bilibili.com/\") | ForEach-Object { Start-Process $_; Start-Sleep\
-    \ -Milliseconds 300 }\n\n打开顺序\n========\n\n1. 知乎关注\n   https://www.zhihu.com/follow\n\
-    \n2. 知乎首页\n   https://www.zhihu.com/\n\n3. 今日热榜（周榜）\n   https://tophub.today/hot\n\
-    \n4. 豆瓣首页\n   https://www.douban.com/\n\n5. 豆瓣探索\n   https://www.douban.com/explore/\n\
-    \n6. 豆瓣小组探索\n   https://www.douban.com/group/explore\n\n7. 微信公众号\n   https://weread.qq.com/web/shelf\n\
-    \n8. 豆瓣小组\n   https://www.douban.com/group/\n\n9. 豆瓣每周最佳电影\n   https://m.douban.com/subject_collection/movie_weekly_best\n\
-    \n10. 哔哩哔哩\n   https://www.bilibili.com/\n\n11.端传媒\n   https://theinitium.com/"
+    https://www.douban.com/group/\",\"https://theinitium.com/\",\"https://www.zhihu.com/collection/991688277\"\
+    ,\"https://m.douban.com/subject_collection/movie_weekly_best\",\"https://www.bilibili.com/\"\
+    ) | ForEach-Object { Start-Process $_; Start-Sleep -Milliseconds 300 }\n\n打开顺序\n\
+    ========\n\n1. 知乎关注\n   https://www.zhihu.com/follow\n\n2. 知乎首页\n   https://www.zhihu.com/\n\
+    \n3. 今日热榜（周榜）\n   https://tophub.today/hot\n\n4. 豆瓣首页\n   https://www.douban.com/\n\
+    \n5. 豆瓣探索\n   https://www.douban.com/explore/\n\n6. 豆瓣小组探索\n   https://www.douban.com/group/explore\n\
+    \n7. 微信公众号\n   https://weread.qq.com/web/shelf\n\n8. 豆瓣小组\n   https://www.douban.com/group/\n\
+    \n9. 豆瓣每周最佳电影\n   https://m.douban.com/subject_collection/movie_weekly_best\n\n\
+    10. 哔哩哔哩\n   https://www.bilibili.com/\n\n11.端传媒\n   https://theinitium.com/"
   link: ''
   enabled: true
   id: 5
@@ -129,8 +129,8 @@ tasks:
     - 0
   description: "1、日常计划\n - ANKI 100+300\n\n2、Todo整理\n\n3、Feedbro\n\n4、Obsidian笔记复习整理\n\
     \ - Inbox\n - Project\n - Archive\n\n5、AI对话整理归档\nhttps://chat.deepseek.com/\n\
-    https://www.qianwen.com/\nhttps://gemini.google.com/app\n\n6、知乎收藏夹\nhttps://www.zhihu.com/collection/991688277\n\
-    \n7、新闻信息流补充\nhttps://tophub.today/daily\nhttps://news.kagi.com/world/latest"
+    https://www.qianwen.com/\nhttps://gemini.google.com/app\n\n6、新闻信息流补充\nhttps://tophub.today/daily\n\
+    https://news.kagi.com/world/latest"
   link: ''
   enabled: true
   id: 6
