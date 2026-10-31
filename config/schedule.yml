@@ -172,10 +172,11 @@ tasks:
   id: 9
 - title: 内务整理
   frequency:
-    period: 1
+    period: 7
     offsets:
     - 0
-  description: 打扫房间
+  description: "打扫房间\n - 洗衣服\n - 晒被子、枕头、床单\n - 整理桌面\n - 扫地、拖地\n打扫卫生间\n - 更换洗漱用品\n\
+    \ - 打扫台面\n整理背包"
   link: ''
   enabled: true
   id: 10
