@@ -122,11 +122,15 @@ tasks:
   link: ''
   enabled: true
   id: 5
-- title: 今日信息流
+- title: 今日信息流（周一到周五）
   frequency:
-    period: 1
+    period: 7
     offsets:
-    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
   description: "1、日常计划\n - ANKI 100+300\n\n2、Todo整理\n\n3、Feedbro\n\n4、Obsidian笔记复习整理\n\
     \ - Inbox\n - Project\n - Archive\n\n5、AI对话整理归档\nhttps://chat.deepseek.com/\n\
     https://www.qianwen.com/\nhttps://gemini.google.com/app\n\n6、新闻信息流补充\nhttps://tophub.today/daily\n\
@@ -166,6 +170,15 @@ tasks:
   link: ''
   enabled: true
   id: 9
+- title: 内务整理
+  frequency:
+    period: 1
+    offsets:
+    - 0
+  description: 打扫房间
+  link: ''
+  enabled: true
+  id: 10
 counter_override:
   date: '2026-10-22'
   day: 295
