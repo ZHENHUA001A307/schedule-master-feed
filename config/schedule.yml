@@ -183,6 +183,16 @@ tasks:
   link: ''
   enabled: true
   id: 10
+- title: 健康维护
+  frequency:
+    period: 52
+    offsets:
+    - 14
+    unit: weeks
+  description: " - 年度洗牙\n - 年度体检"
+  link: ''
+  enabled: true
+  id: 11
 counter_override:
   date: '2026-10-22'
   day: 295
