@@ -42,6 +42,21 @@ class TestCounterNoOverride(unittest.TestCase):
         s = sched()
         self.assertEqual(feed_main.format_title(task(7), d("2026-10-28"), s), "001周 - 3 - T")
 
+    def test_yearly_weeks(self):
+        s = sched()
+        t = {"id": 1, "title": "T", "frequency": {"period": 52, "offsets": [14, 19], "unit": "weeks"}, "enabled": True}
+        # 测试 format_title
+        self.assertEqual(feed_main.format_title(t, d("2026-10-25"), s), "年度任务 - T")
+        
+        # 测试触发逻辑 (由于 delta = 0, delta//7 = 0，不在 14, 19，不该触发)
+        self.assertEqual(len(feed_main.due_tasks(s, d("2026-10-25"))), 0)
+        
+        # 第 15 周周日 (14 * 7 = 98天后)
+        self.assertEqual(len(feed_main.due_tasks({"anchor":"2026-10-25","tasks":[t]}, d("2027-01-31"))), 1)
+        
+        # 第 15 周周一 (99天后，不该触发)
+        self.assertEqual(len(feed_main.due_tasks({"anchor":"2026-10-25","tasks":[t]}, d("2027-02-01"))), 0)
+
     def test_yearly(self):
         s = sched()
         self.assertEqual(feed_main.format_title(task(365), d("2026-10-25"), s), "年度任务 - T")

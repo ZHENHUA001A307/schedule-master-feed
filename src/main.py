@@ -63,7 +63,7 @@ def format_title(task, today, schedule):
     freq = task.get("frequency", {})
     period = int(freq.get("period", 1))
     title = task.get("title", "")
-    if period >= 365:
+    if freq.get("unit") == "weeks" or period >= 365:
         return f"年度任务 - {title}"
     if period == 7:
         return f"{week:03d}周 - {weekday_offset} - {title}"
@@ -84,8 +84,15 @@ def due_tasks(schedule, today):
         offsets = freq.get("offsets", [0])
         if period <= 0 or not offsets:
             continue
-        if delta % period in offsets:
-            out.append(task)
+        
+        unit = freq.get("unit", "days")
+        if unit == "weeks":
+            # 确保触发的那一天依然对齐初始设定的星期（如周日），即 delta % 7 == 0
+            if delta % 7 == 0 and (delta // 7) % period in offsets:
+                out.append(task)
+        else:
+            if delta % period in offsets:
+                out.append(task)
     return out
 
 
