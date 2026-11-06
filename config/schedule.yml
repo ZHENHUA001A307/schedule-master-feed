@@ -187,7 +187,7 @@ tasks:
   frequency:
     period: 52
     offsets:
-    - 14
+    - 1
     unit: weeks
   description: " - 年度洗牙\n - 年度体检"
   link: ''
