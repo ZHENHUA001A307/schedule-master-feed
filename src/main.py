@@ -63,6 +63,8 @@ def format_title(task, today, schedule):
     freq = task.get("frequency", {})
     period = int(freq.get("period", 1))
     title = task.get("title", "")
+    if period >= 365:
+        return f"年度任务 - {title}"
     if period == 7:
         return f"{week:03d}周 - {weekday_offset} - {title}"
     if period == 28:
@@ -92,13 +94,13 @@ def build_items(tasks, today, schedule=None):
         schedule = {"anchor": today.isoformat()}
     items = []
     
-    # 使用真实运行时间作为 pubDate 和 guid 的一部分，避免时序错乱
+    # pubDate 使用真实运行时间，避免被阅读器当成“未来时间”
     now_utc = datetime.datetime.now(datetime.timezone.utc)
-    ts = now_utc.strftime("%Y-%m-%dT%H:%M:%S")
     pub = now_utc.strftime("%a, %d %b %Y %H:%M:%S +0000")
     
     for task in tasks:
-        guid = f"{task['id']}-{ts}"
+        # guid 保持 {id}-{日期}，保证同一天内多次生成能自动去重
+        guid = f"{task['id']}-{today.isoformat()}"
         title = format_title(task, today, schedule)
         link = task.get("link", "") or DEFAULT_LINK
         desc = task.get("description", "") or ""

@@ -42,6 +42,10 @@ class TestCounterNoOverride(unittest.TestCase):
         s = sched()
         self.assertEqual(feed_main.format_title(task(7), d("2026-10-28"), s), "001周 - 3 - T")
 
+    def test_yearly(self):
+        s = sched()
+        self.assertEqual(feed_main.format_title(task(365), d("2026-10-25"), s), "年度任务 - T")
+
     def test_weekly_sun(self):
         s = sched()
         self.assertEqual(feed_main.format_title(task(7), d("2026-10-25"), s), "001周 - 0 - T")

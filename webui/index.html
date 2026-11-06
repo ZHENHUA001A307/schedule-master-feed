@@ -314,7 +314,7 @@ function renderDetail(t) {
   var freq = t.frequency || { period: 1, offsets: [0] };
   var period = freq.period || 1;
   var offsets = freq.offsets || [];
-  var periodSel = period === 1 ? "daily" : (period === 7 ? "weekly" : "monthly");
+  var periodSel = period === 1 ? "daily" : (period === 7 ? "weekly" : (period >= 365 ? "yearly" : "monthly"));
   var weekdays = [0,1,2,3,4,5,6];
   var names = ["日","一","二","三","四","五","六"];
   var wdBtns = "";
@@ -332,6 +332,7 @@ function renderDetail(t) {
         '<option value="daily"' + (periodSel === "daily" ? " selected" : "") + '>每天</option>' +
         '<option value="weekly"' + (periodSel === "weekly" ? " selected" : "") + '>每周</option>' +
         '<option value="monthly"' + (periodSel === "monthly" ? " selected" : "") + '>每月（4 周）</option>' +
+        '<option value="yearly"' + (periodSel === "yearly" ? " selected" : "") + '>每年（365天）</option>' +
       '</select>' +
       '<span class="weekday-btns" data-id="' + t.id + '" style="' + wdStyle + '">' + wdBtns + '</span>' +
       '<input type="text" data-id="' + t.id + '" data-field="monthdays" placeholder="如 1,15,28" value="' + escapeHtml(monthStr) + '" style="' + mdStyle + ';max-width:120px">' +
