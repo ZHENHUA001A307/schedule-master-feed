@@ -4,7 +4,28 @@
 <title>内务提醒</title>
 <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
 <description>日常内务循环提醒</description>
-<lastBuildDate>Fri, 06 Nov 2026 16:14:57 +0000</lastBuildDate>
+<lastBuildDate>Sat, 07 Nov 2026 03:51:21 +0000</lastBuildDate>
+<item>
+  <title><![CDATA[311日 - 花销管理]]></title>
+  <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
+  <description><![CDATA[一、每周生活费<br>1. 周一到周五：<br>   - 早餐4元。<br>   - 午餐8元。<br>   - 晚餐8元。<br>   - 每天吃饭20元。<br>2. 周六和周日：<br>   - 早餐4元。<br>   - 午餐20元。<br>   - 晚餐20元。<br>   - 每天吃饭44元。<br>3. 每天其他花销不超过15元。<br>4. 每周其他花销不超过105元。<br>5. 水费、电费、电话费合计不超过200元。<br><br>二、物资采购<br>1. 200元以下购物：每一月最多1次。<br>2. 201元到1000元购物：每一季度最多1次。<br>3. 超过1000元购物：每一年最多1次。<br>4. 每次购物前，检查年度购物余额。<br>   - 日常用品使用购物券。<br>   - 设备、电器、配件使用闲鱼。<br>   - 一切物品要求进一退一。]]></description>
+  <guid isPermaLink="false">4-2026-11-07</guid>
+  <pubDate>Sat, 07 Nov 2026 03:51:21 +0000</pubDate>
+</item>
+<item>
+  <title><![CDATA[311日 - 体能训练]]></title>
+  <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
+  <description><![CDATA[1. 引体向上<br> - 做12次。<br> - 做2组。<br><br>2. 俯卧撑<br> - 做20次。<br> - 做4组。<br><br>3. 深蹲<br> - 做20次。<br> - 做4组。<br><br>4. 长跑<br> - 跑3 km。<br> - 时间15 min。<br>]]></description>
+  <guid isPermaLink="false">8-2026-11-07</guid>
+  <pubDate>Sat, 07 Nov 2026 03:51:21 +0000</pubDate>
+</item>
+<item>
+  <title><![CDATA[311日 - 作息]]></title>
+  <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
+  <description><![CDATA[一、总日程<br> - 0720 起床<br> - 2150 结束<br> - 午休20分钟（腹式呼吸法）<br> - 2200 体能训练<br> - 2330 熄灯<br><br>二、劳保<br> - 工作20分钟：双拳抵腰+头部回缩2*8 + 颈部伸展2*8 + 看6米以外20秒<br> - CareUEyes设置为每20分钟休息70秒<br> - 每天要用牙线<br><br>三、禁止<br> - 禁止趴睡、禁止半躺看手机/电脑<br> - 禁止看短剧/短视频/非标信息流<br> - 禁止吃零食、夜宵；禁止喝含糖饮料/功能饮料（如红牛、魔爪、东鹏特饮）<br> - 禁止吸烟饮酒<br><br>三、饮食<br> - 早餐：面包1个+无糖豆浆1盒。（4元）<br> - 午晚餐：米饭每餐100 g；素菜:荤菜:米饭=2:1:1。（8元）<br> - 禁购：零食、含糖饮料、果汁、奶茶、路边摊小吃。（8元）<br> - 饮水：全天3000 mL。<br><br> - 周五晚餐：食堂水饺（8元）<br> - 周六午餐：青椒肉丝套餐（13.8元）<br> - 周六晚餐：轻食套餐（15.5元）<br> - 周日午餐：小炒肉套餐（16.2元）<br> - 周日晚餐：日式咖喱鸡排饭（17.6元）/自由（40元）<br><br> - 比例：米饭1小碗；素菜:荤菜:米饭=2:1:1]]></description>
+  <guid isPermaLink="false">9-2026-11-07</guid>
+  <pubDate>Sat, 07 Nov 2026 03:51:21 +0000</pubDate>
+</item>
 <item>
   <title><![CDATA[310日 - 花销管理]]></title>
   <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
@@ -17,27 +38,6 @@
   <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
   <description><![CDATA[信息流Powershell运行脚本<br>@("https://www.zhihu.com/follow","https://www.zhihu.com/","https://tophub.today/hot","https://www.douban.com/","https://www.douban.com/explore/","https://www.douban.com/group/explore","https://www.douban.com/group/","https://www.douban.com/group/","https://theinitium.com/","https://www.zhihu.com/collection/991688277","https://m.douban.com/subject_collection/movie_weekly_best","https://www.bilibili.com/") | ForEach-Object { Start-Process $_; Start-Sleep -Milliseconds 300 }<br><br>打开顺序<br>========<br><br>1. 知乎关注<br>   https://www.zhihu.com/follow<br><br>2. 知乎首页<br>   https://www.zhihu.com/<br><br>3. 今日热榜（周榜）<br>   https://tophub.today/hot<br><br>4. 豆瓣首页<br>   https://www.douban.com/<br><br>5. 豆瓣探索<br>   https://www.douban.com/explore/<br><br>6. 豆瓣小组探索<br>   https://www.douban.com/group/explore<br><br>7. 微信公众号<br>   https://weread.qq.com/web/shelf<br><br>8. 豆瓣小组<br>   https://www.douban.com/group/<br><br>9. 豆瓣每周最佳电影<br>   https://m.douban.com/subject_collection/movie_weekly_best<br><br>10. 哔哩哔哩<br>   https://www.bilibili.com/<br><br>11.端传媒<br>   https://theinitium.com/]]></description>
   <guid isPermaLink="false">5-2026-11-06</guid>
-  <pubDate>Fri, 06 Nov 2026 16:14:57 +0000</pubDate>
-</item>
-<item>
-  <title><![CDATA[045周 - 5 - 今日信息流（周一到周五）]]></title>
-  <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
-  <description><![CDATA[1、日常计划<br> - ANKI 100+300<br><br>2、Todo整理<br><br>3、Feedbro<br><br>4、Obsidian笔记复习整理<br> - Inbox<br> - Project<br> - Archive<br><br>5、AI对话整理归档<br>https://chat.deepseek.com/<br>https://www.qianwen.com/<br>https://gemini.google.com/app<br><br>6、新闻信息流补充<br>https://tophub.today/daily<br>https://news.kagi.com/world/latest]]></description>
-  <guid isPermaLink="false">6-2026-11-06</guid>
-  <pubDate>Fri, 06 Nov 2026 16:14:57 +0000</pubDate>
-</item>
-<item>
-  <title><![CDATA[310日 - 体能训练]]></title>
-  <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
-  <description><![CDATA[1. 引体向上<br> - 做12次。<br> - 做2组。<br><br>2. 俯卧撑<br> - 做20次。<br> - 做4组。<br><br>3. 深蹲<br> - 做20次。<br> - 做4组。<br><br>4. 长跑<br> - 跑3 km。<br> - 时间15 min。<br>]]></description>
-  <guid isPermaLink="false">8-2026-11-06</guid>
-  <pubDate>Fri, 06 Nov 2026 16:14:57 +0000</pubDate>
-</item>
-<item>
-  <title><![CDATA[310日 - 作息]]></title>
-  <link>https://github.com/ZHENHUA001A307/schedule-master-feed</link>
-  <description><![CDATA[一、总日程<br> - 0720 起床<br> - 2150 结束<br> - 午休20分钟（腹式呼吸法）<br> - 2200 体能训练<br> - 2330 熄灯<br><br>二、劳保<br> - 工作20分钟：双拳抵腰+头部回缩2*8 + 颈部伸展2*8 + 看6米以外20秒<br> - CareUEyes设置为每20分钟休息70秒<br> - 每天要用牙线<br><br>三、禁止<br> - 禁止趴睡、禁止半躺看手机/电脑<br> - 禁止看短剧/短视频/非标信息流<br> - 禁止吃零食、夜宵；禁止喝含糖饮料/功能饮料（如红牛、魔爪、东鹏特饮）<br> - 禁止吸烟饮酒<br><br>三、饮食<br> - 早餐：面包1个+无糖豆浆1盒。（4元）<br> - 午晚餐：米饭每餐100 g；素菜:荤菜:米饭=2:1:1。（8元）<br> - 禁购：零食、含糖饮料、果汁、奶茶、路边摊小吃。（8元）<br> - 饮水：全天3000 mL。<br><br> - 周五晚餐：食堂水饺（8元）<br> - 周六午餐：青椒肉丝套餐（13.8元）<br> - 周六晚餐：轻食套餐（15.5元）<br> - 周日午餐：小炒肉套餐（16.2元）<br> - 周日晚餐：日式咖喱鸡排饭（17.6元）/自由（40元）<br><br> - 比例：米饭1小碗；素菜:荤菜:米饭=2:1:1]]></description>
-  <guid isPermaLink="false">9-2026-11-06</guid>
   <pubDate>Fri, 06 Nov 2026 16:14:57 +0000</pubDate>
 </item>
 </channel>
