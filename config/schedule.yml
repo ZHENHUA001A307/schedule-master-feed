@@ -193,6 +193,24 @@ tasks:
   link: ''
   enabled: true
   id: 11
+- title: Github 今日热门
+  frequency:
+    period: 1
+    offsets:
+    - 0
+  description: ''
+  link: https://ghtrends.dev/zh/daily/
+  enabled: true
+  id: 12
+- title: Github 本周热门
+  frequency:
+    period: 7
+    offsets:
+    - 5
+  description: ''
+  link: https://ghtrends.dev/zh/weekly/
+  enabled: true
+  id: 13
 counter_override:
   date: '2026-10-22'
   day: 295
