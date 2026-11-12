@@ -211,6 +211,24 @@ tasks:
   link: https://ghtrends.dev/zh/weekly/
   enabled: true
   id: 13
+- title: '!最新日运行报告'
+  frequency:
+    period: 1
+    offsets:
+    - 0
+  description: ''
+  link: obsidian://open?vault=Oscars902Obsidian&file=0_Inbox%2F%21%E6%9C%80%E6%96%B0%E6%97%A5%E8%BF%90%E8%A1%8C%E6%8A%A5%E5%91%8A
+  enabled: true
+  id: 14
+- title: '!最新周运行报告'
+  frequency:
+    period: 7
+    offsets:
+    - 0
+  description: ''
+  link: obsidian://open?vault=Oscars902Obsidian&file=0_Inbox%2F%21%E6%9C%80%E6%96%B0%E5%91%A8%E8%BF%90%E8%A1%8C%E6%8A%A5%E5%91%8A
+  enabled: true
+  id: 15
 counter_override:
   date: '2026-10-22'
   day: 295
