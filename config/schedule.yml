@@ -231,9 +231,13 @@ tasks:
   id: 15
 - title: A股 ETF监测
   frequency:
-    period: 1
+    period: 7
     offsets:
-    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
   description: ''
   link: ''
   enabled: true
