@@ -1,18 +1,20 @@
 anchor: '2026-10-25'
 tasks:
 - id: 1
-  title: 报表填写
+  title: 周日早上固定复盘（健康 + 财务 + 时间）
   frequency:
     period: 7
     offsets:
     - 0
-  link: ''
-  description: '1-填写总报表：体重、尿酸、视力
+  link: http://127.0.0.1:8768
+  description: '1. 健康指标：打开时间后台 http://127.0.0.1:8768 录入本周 Redmi Watch 5 均值与周日实测（体重/尿酸/视力）。
 
-    2-填写总报表：静息心率、平均入睡时间、平均醒来时间、睡眠时长
+    2. 财务指标：打开财务看板 http://127.0.0.1:8769 核对本周日常支出、违规花销高频规律与采购差旅分级（每月首周日同步核对公积金副账本）。
+
+    3. 时间报告：在 Obsidian 查看「!最新周运行报告.md」与「!趋势分析.md」，确认 22:00 后熬夜与学习投入。
 
     '
-  enabled: true
+  enabled: false
 - id: 2
   title: 计算机整理
   frequency:
@@ -41,7 +43,7 @@ tasks:
     14-检查摄像头挡板
 
     15-检查IP地址安全、DNS、RTS'
-  enabled: true
+  enabled: false
 - id: 3
   title: 手机整理
   frequency:
@@ -88,7 +90,7 @@ tasks:
     20-清理设置搜索历史
 
     21-Anki obsidian同步'
-  enabled: true
+  enabled: false
 - title: 花销管理
   frequency:
     period: 1
@@ -100,7 +102,7 @@ tasks:
     \ 201元到1000元购物：每一季度最多1次。\n3. 超过1000元购物：每一年最多1次。\n4. 每次购物前，检查年度购物余额。\n   - 日常用品使用购物券。\n\
     \   - 设备、电器、配件使用闲鱼。\n   - 一切物品要求进一退一。"
   link: ''
-  enabled: true
+  enabled: false
   id: 4
 - title: 本周信息流
   frequency:
@@ -120,7 +122,7 @@ tasks:
     \n9. 豆瓣每周最佳电影\n   https://m.douban.com/subject_collection/movie_weekly_best\n\n\
     10. 哔哩哔哩\n   https://www.bilibili.com/\n\n11.端传媒\n   https://theinitium.com/"
   link: ''
-  enabled: true
+  enabled: false
   id: 5
 - title: 今日信息流（周一到周五）
   frequency:
@@ -136,7 +138,7 @@ tasks:
     https://www.qianwen.com/\nhttps://gemini.google.com/app\n\n6、新闻信息流补充\nhttps://tophub.today/daily\n\
     https://news.kagi.com/world/latest"
   link: ''
-  enabled: true
+  enabled: false
   id: 6
 - title: 洗澡
   frequency:
@@ -146,7 +148,7 @@ tasks:
     - 3
   description: ''
   link: ''
-  enabled: true
+  enabled: false
   id: 7
 - title: 体能训练
   frequency:
@@ -156,7 +158,7 @@ tasks:
   description: "1. 引体向上\n - 做12次。\n - 做2组。\n\n2. 俯卧撑\n - 做20次。\n - 做4组。\n\n3. 深蹲\n\
     \ - 做20次。\n - 做4组。\n\n4. 长跑\n - 跑3 km。\n - 时间15 min。\n"
   link: ''
-  enabled: true
+  enabled: false
   id: 8
 - title: 作息
   frequency:
@@ -171,7 +173,7 @@ tasks:
     \ - 周六晚餐：轻食套餐（15.5元）\n - 周日午餐：小炒肉套餐（16.2元）\n - 周日晚餐：日式咖喱鸡排饭（17.6元）/自由（40元）\n\n\
     \ - 比例：米饭1小碗；素菜:荤菜:米饭=2:1:1"
   link: ''
-  enabled: true
+  enabled: false
   id: 9
 - title: 内务整理
   frequency:
@@ -181,7 +183,7 @@ tasks:
   description: "打扫房间\n - 洗衣服\n - 晒被子、枕头、床单\n - 整理桌面\n - 扫地、拖地\n打扫卫生间\n - 更换洗漱用品\n\
     \ - 打扫台面\n整理背包"
   link: ''
-  enabled: true
+  enabled: false
   id: 10
 - title: 健康维护
   frequency:
@@ -191,7 +193,7 @@ tasks:
     unit: weeks
   description: " - 年度洗牙\n - 年度体检"
   link: ''
-  enabled: true
+  enabled: false
   id: 11
 - title: Github 今日热门
   frequency:
@@ -200,7 +202,7 @@ tasks:
     - 0
   description: ''
   link: https://ghtrends.dev/zh/daily/
-  enabled: true
+  enabled: false
   id: 12
 - title: Github 本周热门
   frequency:
@@ -209,7 +211,7 @@ tasks:
     - 5
   description: ''
   link: https://ghtrends.dev/zh/weekly/
-  enabled: true
+  enabled: false
   id: 13
 - title: '!最新日运行报告'
   frequency:
@@ -218,7 +220,7 @@ tasks:
     - 0
   description: ''
   link: obsidian://open?vault=Oscars902Obsidian&file=0_Inbox%2F%21%E6%9C%80%E6%96%B0%E6%97%A5%E8%BF%90%E8%A1%8C%E6%8A%A5%E5%91%8A
-  enabled: true
+  enabled: false
   id: 14
 - title: '!最新周运行报告'
   frequency:
@@ -227,7 +229,7 @@ tasks:
     - 0
   description: ''
   link: obsidian://open?vault=Oscars902Obsidian&file=0_Inbox%2F%21%E6%9C%80%E6%96%B0%E5%91%A8%E8%BF%90%E8%A1%8C%E6%8A%A5%E5%91%8A
-  enabled: true
+  enabled: false
   id: 15
 - title: A股 ETF监测
   frequency:
@@ -240,7 +242,7 @@ tasks:
     - 5
   description: ''
   link: ''
-  enabled: true
+  enabled: false
   id: 16
 counter_override:
   date: '2026-10-22'
